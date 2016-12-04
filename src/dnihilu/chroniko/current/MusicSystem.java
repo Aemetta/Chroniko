@@ -1,15 +1,15 @@
 package dnihilu.chroniko.current;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Vector;
 
 public class MusicSystem {
 	
 	GameWindow game;
-	String song;
 	double time = 0;
 //	private boolean paused;
-	
+	/*
 	String track[] = new String[13];
 	{
 	track[0] = "guitar.ogg";
@@ -25,14 +25,16 @@ public class MusicSystem {
 	track[10] = "keys.ogg";
 	track[11] = "crowd.ogg";
 	track[12] = "song.ogg";
-	}
+	}*/
+	File track[];
 	
 	OggDecoder ogg[] = new OggDecoder[0];
 	private double startTime = -0.2;
 	
-	public MusicSystem(GameWindow game, String song){
+	public MusicSystem(GameWindow game, File track[]){
 		this.game = game;
-		this.song = song;
+		this.track = track;
+		
 		this.constructTracks();
 		this.setTime(System.nanoTime());
 		for(int i = 0; i < ogg.length; i++){
@@ -47,7 +49,7 @@ public class MusicSystem {
 	private void constructTracks(){
 		Vector<OggDecoder> ogg = new Vector<OggDecoder>();
 		for(int i = 0; i < track.length; i++){
-			try{ogg.add(new OggDecoder("file://" + song + track[i], this));}
+			try{ogg.add(new OggDecoder("file://" + track[i], this));}
 			catch(FileNotFoundException f){}
 			catch(Exception e){System.err.println(e);}
 		}

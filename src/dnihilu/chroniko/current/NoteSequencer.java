@@ -1,5 +1,6 @@
 package dnihilu.chroniko.current;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -57,13 +58,13 @@ public class NoteSequencer {
 	
 	Track trackList[] = new Track[30];
 	
-	public NoteSequencer(Board board[], GameWindow game, MusicSystem player, String path) {
+	public NoteSequencer(Board board[], GameWindow game, MusicSystem player, File path) {
 		this.board = board;
 		this.player = player;
 		for(int i = 0; i < board.length; i++)
 		try
 		{
-			sequence = MidiSystem.getSequence(new FileInputStream(path + "notes.mid"));
+			sequence = MidiSystem.getSequence(new FileInputStream(path));
 			} catch (FileNotFoundException e) {
 			e.printStackTrace();
 			} catch (InvalidMidiDataException e) {
