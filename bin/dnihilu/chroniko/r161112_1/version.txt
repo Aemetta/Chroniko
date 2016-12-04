@@ -1,0 +1,3 @@
+Began attempting to work on animations.
+Currently trying to figure out why the tail isn't
+being drawn after adding variable width to its formula.
