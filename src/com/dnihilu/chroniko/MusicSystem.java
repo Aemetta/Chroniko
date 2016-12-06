@@ -1,4 +1,4 @@
-package dnihilu.chroniko.current;
+package com.dnihilu.chroniko;
 
 import java.io.File;
 import java.io.FileNotFoundException;

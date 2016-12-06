@@ -1,4 +1,4 @@
-package dnihilu.chroniko.current;
+package com.dnihilu.chroniko;
 
 
 public class Ticker extends Thread{

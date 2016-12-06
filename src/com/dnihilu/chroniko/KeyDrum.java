@@ -1,8 +1,8 @@
-package dnihilu.chroniko.current;
+package com.dnihilu.chroniko;
 
 public class KeyDrum implements ControlScheme {
 	@Override
-	public NoteGem tryPlaying(boolean[] frets, int newFret, double hitWindow, NoteGem[] notes) {
+	public NotePS tryPlaying(boolean[] frets, int newFret, double hitWindow, NotePS[] notes) {
 		
 		for(int i = 0; i < notes.length; i++){
 			if(newFret == notes[i].getLane()){

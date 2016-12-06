@@ -1,10 +1,10 @@
-package dnihilu.chroniko.current;
+package com.dnihilu.chroniko;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
 
 
-public class NoteGem extends Scrolling{
+public class NotePS extends Scrolling{
 	private double len;
 	private int lane;
 	private int numLanes;
@@ -17,7 +17,7 @@ public class NoteGem extends Scrolling{
 	
 	private boolean sustain = false;
 	
-	public NoteGem(double start, double len, int lane, Board board, Color color){
+	public NotePS(double start, double len, int lane, BoardPS2D board, Color color){
 		super(start, board);
 		
 		this.len = len;

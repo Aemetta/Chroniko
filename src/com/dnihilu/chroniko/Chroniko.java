@@ -1,4 +1,4 @@
-package dnihilu.chroniko.current;
+package com.dnihilu.chroniko;
 
 import java.io.File;
 import java.util.Arrays;
@@ -8,7 +8,7 @@ public class Chroniko {
 	GameWindow window;
 	MusicSystem music;
 	NoteSequencer notes;
-	Board board[];
+	BoardPS2D board[];
 	
 	public static void main(String[] args) {
 		if(args.length == 1){
@@ -48,9 +48,9 @@ public class Chroniko {
 	    	}
 	    }
 		
-	    board = new Board[]{new Board(this, BoardType.BASS, 0.8, false), 
-							new Board(this, BoardType.DRUMS, 0.9, false), 
-							new Board(this, BoardType.KEYS, 1, true)};
+	    board = new BoardPS2D[]{new BoardPS2D(this, BoardTypePS.BASS, 0.8, false), 
+								new BoardPS2D(this, BoardTypePS.DRUMS, 0.9, false), 
+								new BoardPS2D(this, BoardTypePS.KEYS, 1, true)};
 	    
 		window.addPlayers(board);
 		

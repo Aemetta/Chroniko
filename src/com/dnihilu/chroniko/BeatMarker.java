@@ -1,4 +1,4 @@
-package dnihilu.chroniko.current;
+package com.dnihilu.chroniko;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
@@ -8,7 +8,7 @@ public class BeatMarker extends Scrolling{
 	private Color color;
 	private double size;
 	
-	public BeatMarker(double start, boolean isBig, Board board, Color color){
+	public BeatMarker(double start, boolean isBig, BoardPS2D board, Color color){
 		super(start, board);
 		
 		if(isBig) this.size = 0.01;

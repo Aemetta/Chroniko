@@ -1,8 +1,8 @@
-package dnihilu.chroniko.current;
+package com.dnihilu.chroniko;
 
 import java.awt.Color;
 
-public enum BoardType {
+public enum BoardTypePS {
 	
 	DRUMS (
 			new Color[] {
@@ -53,7 +53,7 @@ public enum BoardType {
 	private final PSMidiTrack track;
 	private final ControlScheme scheme;
 	
-	BoardType(Color notecolor[], PSMidiTrack track, ControlScheme scheme){
+	BoardTypePS(Color notecolor[], PSMidiTrack track, ControlScheme scheme){
 		this.notecolor = notecolor;
 		this.numlanes = notecolor.length - 1;
 		this.track = track;

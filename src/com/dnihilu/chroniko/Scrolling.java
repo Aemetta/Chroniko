@@ -1,15 +1,15 @@
-package dnihilu.chroniko.current;
+package com.dnihilu.chroniko;
 
 import java.awt.Graphics2D;
 
 public class Scrolling implements Visible {
 	protected double start;
 	protected double timeLeft;
-	protected Board board;
+	protected BoardPS2D board;
 	protected double blen;
 	protected double brun;
 	
-	public Scrolling(double start, Board board){
+	public Scrolling(double start, BoardPS2D board){
 		this.start = start;
 		this.board = board;
 		this.blen = board.getLength();

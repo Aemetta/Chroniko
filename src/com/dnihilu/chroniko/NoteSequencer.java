@@ -1,4 +1,4 @@
-package dnihilu.chroniko.current;
+package com.dnihilu.chroniko;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -35,7 +35,7 @@ public class NoteSequencer {
 	 * This first set is variables that don't change as notes get read:
 	 */
 	
-	Board board[];
+	BoardPS board[];
 	Track track[];
 	boolean finished[];
 	int offset[];
@@ -57,7 +57,7 @@ public class NoteSequencer {
 	
 	Track trackList[] = new Track[30];
 	
-	public NoteSequencer(Board board[], File path) {
+	public NoteSequencer(BoardPS board[], File path) {
 		this.board = board;
 		for(int i = 0; i < board.length; i++)
 		try
@@ -244,8 +244,8 @@ public class NoteSequencer {
 		else return 2;
 	}
 	
-	private int getOffset(BoardType type){
-		if(type == BoardType.DRUMS) return 96;
+	private int getOffset(BoardTypePS type){
+		if(type == BoardTypePS.DRUMS) return 96;
 		else return 95;
 	}
 	

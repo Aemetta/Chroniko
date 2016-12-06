@@ -1,4 +1,4 @@
-package dnihilu.chroniko.current;
+package com.dnihilu.chroniko;
 
 import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioSystem;

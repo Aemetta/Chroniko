@@ -1,4 +1,4 @@
-package dnihilu.chroniko.current;
+package com.dnihilu.chroniko;
 
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -16,7 +16,7 @@ public class GameWindow extends JPanel {
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	Board board[];
+	private BoardPS2D board[];
 //	private boolean paused;
 
 	public void paint(Graphics g) {
@@ -63,9 +63,11 @@ public class GameWindow extends JPanel {
 	}
 	
 	public void addPlayers(Board b[]) {
-		this.board = new Board[b.length];
+		this.board = new BoardPS2D[b.length];
 		for(int i = 0; i < board.length; i++){
-			this.board[i] = b[i];
+			this.board[i] = (BoardPS2D) b[i];
+			
+		//	this.add
 		}
 	}
 }
