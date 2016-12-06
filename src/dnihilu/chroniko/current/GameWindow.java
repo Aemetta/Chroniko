@@ -17,7 +17,6 @@ public class GameWindow extends JPanel {
 	private static final long serialVersionUID = 1L;
 	
 	Board board[];
-	MusicSystem music;
 //	private boolean paused;
 
 	public void paint(Graphics g) {
@@ -30,21 +29,19 @@ public class GameWindow extends JPanel {
 			board[i].paint(g2d, i*getWidth()/board.length, 0, getWidth()/board.length, getHeight());
 	}
 	
-	public GameWindow(Board b[], MusicSystem player) {
-		this.addPlayers(b);
-		
+	public GameWindow() {
 		this.addKeyListener(new KeyListener() {
 			@Override
 			public void keyPressed(KeyEvent arg0) {
 				for(int i = 0; i < board.length; i++)
 					if(board[i].hasController())
-						board[i].controls.event(arg0, true);
+						board[i].getController().event(arg0, true);
 			}
 			@Override
 			public void keyReleased(KeyEvent arg0) {
 				for(int i = 0; i < board.length; i++)
 					if(board[i].hasController())
-						board[i].controls.event(arg0, false);
+						board[i].getController().event(arg0, false);
 			}
 			@Override
 			public void keyTyped(KeyEvent arg0) {
@@ -58,22 +55,17 @@ public class GameWindow extends JPanel {
 		frame.setFocusable(true);
 		this.requestFocus();
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.music = player;
 	}
 	
-	public GameWindow(MusicSystem player) {
-		this(null, player);
+	public GameWindow(Board b[]) {
+		this();
+		this.addPlayers(b);
 	}
 	
 	public void addPlayers(Board b[]) {
 		this.board = new Board[b.length];
 		for(int i = 0; i < board.length; i++){
 			this.board[i] = b[i];
-			this.board[i].setWindow(this);
 		}
-	}
-	
-	public MusicSystem getMusicPlayer(){
-		return music;
 	}
 }

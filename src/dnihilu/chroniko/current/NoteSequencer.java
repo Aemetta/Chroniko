@@ -15,7 +15,6 @@ import javax.sound.midi.Track;
 
 public class NoteSequencer {
 	
-	MusicSystem player;
 	Sequence sequence;
 	boolean ppqMode;
 	int res;
@@ -58,9 +57,8 @@ public class NoteSequencer {
 	
 	Track trackList[] = new Track[30];
 	
-	public NoteSequencer(Board board[], GameWindow game, MusicSystem player, File path) {
+	public NoteSequencer(Board board[], File path) {
 		this.board = board;
-		this.player = player;
 		for(int i = 0; i < board.length; i++)
 		try
 		{
@@ -170,7 +168,10 @@ public class NoteSequencer {
 	
 	public void refresh(){
 		for(int i = 0; i < board.length; i++){
-			if(!finished[i] && (getLoadedTime(i) < board[i].getLength() + board[i].window.music.getTime() + 0.5)){
+			if(!finished[i] && (getLoadedTime(i) < board[i].getLength() + board[i].
+					getGame().
+					music.
+					getTime() + 0.5)){
 				long tick = getLoadedTick(i);
 				parseNext(i);
 				makeBeatMarkers(i, tick+3, getLoadedTick(i)+3);

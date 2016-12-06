@@ -40,18 +40,27 @@ public class NoteGem extends Scrolling{
 		g2d.setColor(notecolor);
 		
 		if(lane != 0){	//Gem
-			if(len != 0){	//Sustain line
+			if(sustain){
 				g2d.setColor(tailcolor);
 				g2d.fillRect(x+(w/numLanes)*(lane-1)+1+(int)(w*(0.5-tailwidth/2))/numLanes,
 						(int)(y+pos(len)*h), 
 						(int)((w/numLanes)*tailwidth),
-						(int)(len/blen*h));
+						(int)(blen*h));
 				g2d.setColor(notecolor);
+			}else{
+				if(len != 0){	//Tail line
+					g2d.setColor(tailcolor);
+					g2d.fillRect(x+(w/numLanes)*(lane-1)+1+(int)(w*(0.5-tailwidth/2))/numLanes,
+							(int)(y+pos(len)*h), 
+							(int)((w/numLanes)*tailwidth),
+							(int)(len/blen*h));
+					g2d.setColor(notecolor);
+				}
+				g2d.fillRect(x+(w/numLanes)*(lane-1)+1+(int)(w*(0.5-width/2))/numLanes,
+							(int)(y+pos(0)*h-(h*(size/2))), 
+							(int)((w/numLanes-1)*width),
+							(int)(h*size));
 			}
-			g2d.fillRect(x+(w/numLanes)*(lane-1)+1+(int)(w*(0.5-width/2))/numLanes,
-						(int)(y+pos(0)*h-(h*(size/2))), 
-						(int)((w/numLanes-1)*width),
-						(int)(h*size));
 		}
 		else			//Open/Bass Gem
 		g2d.fillRect(x+1, 
@@ -62,6 +71,7 @@ public class NoteGem extends Scrolling{
 	protected void fail(){
 		notecolor = new Color(255, 0, 0, 100);
 		if(len != 0){
+			sustain = false;
 			tailcolor = notecolor.darker();
 		}
 	}
@@ -70,10 +80,16 @@ public class NoteGem extends Scrolling{
 		board.addParticle();
 		if(len != 0){
 			sustain = true;
-			double shift = -timeLeft;
-			
+			tailcolor = notecolor.brighter();
+			tailwidth *= 2;
 		}
 		else board.removeNote(this);
+	}
+	
+	@Override
+	public void update(){
+		super.update();
+		if(sustain && board.getFretState()[lane]) fail();
 	}
 	
 	@Override

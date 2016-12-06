@@ -5,12 +5,10 @@ public class Ticker extends Thread{
 	
 	static final int fpsCap = 120;
 	
-	GameWindow game;
-	NoteSequencer notes;
+	Chroniko game;
 	
-	public Ticker(GameWindow game, NoteSequencer notes){
+	public Ticker(Chroniko game){
 		this.game = game;
-		this.notes = notes;
 	}
 	
 	public void run(){
@@ -20,8 +18,10 @@ public class Ticker extends Thread{
 			
 			long time = System.nanoTime();
 			game.music.setTime(time);
-			game.repaint();
-			notes.refresh();
+			game.window.repaint();
+			game.notes.refresh();
+			
+			Thread.yield();
 			
 		/*	long diff = System.nanoTime() - time;
 			

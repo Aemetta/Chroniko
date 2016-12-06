@@ -6,7 +6,7 @@ import java.util.Vector;
 
 public class MusicSystem {
 	
-	GameWindow game;
+	Chroniko game;
 	double time = 0;
 //	private boolean paused;
 	/*
@@ -31,7 +31,7 @@ public class MusicSystem {
 	OggDecoder ogg[] = new OggDecoder[0];
 	private double startTime = -0.2;
 	
-	public MusicSystem(GameWindow game, File track[]){
+	public MusicSystem(Chroniko game, File track[]){
 		this.game = game;
 		this.track = track;
 		

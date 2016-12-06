@@ -6,7 +6,7 @@ import java.util.Vector;
 
 public class Board implements Visible {
 	
-	public GameWindow window;
+	private Chroniko game;
 	
 	private double length;
 	private double runoff;
@@ -15,7 +15,7 @@ public class Board implements Visible {
 	private int numLanes;
 
 	private boolean playerControlled;
-	public PlayerController controls;
+	private PlayerController controls;
 	private boolean fret[];
 	private double hitWindow = 0.1;
 	
@@ -27,7 +27,8 @@ public class Board implements Visible {
 	private Vector<BeatMarker> beats = new Vector<BeatMarker>(20, 5);
 	private Vector<Visible> effects = new Vector<Visible>(20, 5);
 	
-	public Board(BoardType type, double speed, boolean playerControlled){
+	public Board(Chroniko game, BoardType type, double speed, boolean playerControlled){
+		this.game = game;
 		this.type = type;
 		this.numLanes = type.lanes();
 		this.notecolor = type.noteColors();
@@ -39,10 +40,6 @@ public class Board implements Visible {
 		if(playerControlled)
 			this.controls = new PlayerController(this);
 		this.fret = new boolean[numLanes+1];
-	}
-	
-	public Board(BoardType type, boolean playerControlled){
-		this(type, 1, playerControlled);
 	}
 	
 	public void paint(Graphics2D g2d, int x, int y, int w, int h){
@@ -71,10 +68,6 @@ public class Board implements Visible {
 		Visible[] other = effects.toArray(new Visible[0]);
 		for(int i = 0; i < other.length; i++)
 			other[i].paint(g2d, x, y, w, h);
-	}
-	
-	public void setWindow(GameWindow window){
-		this.window = window;
 	}
 	
 	public void addNote(double startTime, double endTime, int lane, int noteType){
@@ -112,6 +105,10 @@ public class Board implements Visible {
 	//	System.out.println("Fret " + lane);
 	}
 	
+	public boolean[] getFretState(){
+		return fret;
+	}
+	
 	public double getLength(){
 		return length;
 	}
@@ -134,6 +131,14 @@ public class Board implements Visible {
 	
 	public boolean hasController(){
 		return playerControlled;
+	}
+	
+	public PlayerController getController(){
+		return controls;
+	}
+	
+	public Chroniko getGame(){
+		return game;
 	}
 	
 	public double getHitWindow(){

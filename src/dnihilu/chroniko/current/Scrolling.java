@@ -17,7 +17,7 @@ public class Scrolling implements Visible {
 	}
 	
 	public void update(){
-		this.timeLeft = start - board.window.music.getTime();
+		this.timeLeft = start - board.getGame().music.getTime();
 		if(timeLeft < cutoff()) board.removeNote(this);
 		if(timeLeft < -board.getHitWindow()) fail();
 	}
