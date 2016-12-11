@@ -1,35 +1,35 @@
 package com.dnihilu.chroniko;
 
+import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.RenderingHints;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-public class GameWindow extends JPanel {
+public class GameWindow extends JFrame {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	private BoardPS2D board[];
-//	private boolean paused;
-
-	public void paint(Graphics g) {
-		Graphics2D g2d = (Graphics2D) g;
-		
-		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
-				RenderingHints.VALUE_ANTIALIAS_ON);
-		
+	private JPanel mainPanel;
+	private JPanel boardPanel;
+	private Board board[] = {};
+	
+	private final int width;
+	private final int height;
+	
+	public void paint(Graphics g){
 		for(int i = 0; i < board.length; i++)
-			board[i].paint(g2d, i*getWidth()/board.length, 0, getWidth()/board.length, getHeight());
+			board[i].repaint();
 	}
 	
 	public GameWindow() {
+		super("Chroniko");
 		this.addKeyListener(new KeyListener() {
 			@Override
 			public void keyPressed(KeyEvent arg0) {
@@ -48,13 +48,20 @@ public class GameWindow extends JPanel {
 			}
 		});
 		
-		JFrame frame = new JFrame("Chroniko");
-		frame.add(this);
-		frame.setSize(720, 405);
-		frame.setVisible(true);
-		frame.setFocusable(true);
-		this.requestFocus();
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		width = 700;
+		height = 400;
+		setSize(width, height);
+		
+		setVisible(true);
+		setFocusable(true);
+		setResizable(false);
+		requestFocus();
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		mainPanel = new JPanel(new BorderLayout());
+		add(mainPanel);
+		boardPanel = new JPanel();
+		mainPanel.add(boardPanel, BorderLayout.CENTER);
 	}
 	
 	public GameWindow(Board b[]) {
@@ -63,11 +70,13 @@ public class GameWindow extends JPanel {
 	}
 	
 	public void addPlayers(Board b[]) {
-		this.board = new BoardPS2D[b.length];
+		this.board = new Board[b.length];
 		for(int i = 0; i < board.length; i++){
-			this.board[i] = (BoardPS2D) b[i];
+			this.board[i] = (Board) b[i];
 			
-		//	this.add
+			boardPanel.add(board[i]);
+			board[i].setPreferredSize(new Dimension(width/b.length, height));
 		}
+		pack();
 	}
 }

@@ -10,6 +10,8 @@ public class Chroniko {
 	NoteSequencer notes;
 	BoardPS2D board[];
 	
+//	private boolean paused;
+	
 	public static void main(String[] args) {
 		if(args.length == 1){
 			new Chroniko().play(args[0]);
@@ -48,9 +50,10 @@ public class Chroniko {
 	    	}
 	    }
 		
-	    board = new BoardPS2D[]{new BoardPS2D(this, BoardTypePS.BASS, 0.8, false), 
-								new BoardPS2D(this, BoardTypePS.DRUMS, 0.9, false), 
-								new BoardPS2D(this, BoardTypePS.KEYS, 1, true)};
+	    board = new BoardPS2D[]{new BoardPS2D(this, TypePS.GUITAR, 1.2, false), 
+	    						new BoardPS2D(this, TypePS.BASS, 0.8, false), 
+	    						new BoardPS2D(this, TypePS.DRUMS, 0.9, false), 
+								new BoardPS2D(this, TypePS.KEYS, 1, true)};
 	    
 		window.addPlayers(board);
 		

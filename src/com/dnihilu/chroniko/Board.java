@@ -1,7 +1,14 @@
 package com.dnihilu.chroniko;
 
-public abstract class Board {
+import javax.swing.JPanel;
+
+public abstract class Board extends JPanel {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3423879462574466330L;
+
 	Chroniko game;
 
 	private boolean playerControlled;
@@ -9,7 +16,6 @@ public abstract class Board {
 	
 	public Board(Chroniko game){
 		this.game = game;
-		
 		this.setPlayerControlled(playerControlled);
 	}
 	
@@ -31,5 +37,13 @@ public abstract class Board {
 
 	public void setControls(PlayerController controls) {
 		this.controls = controls;
+	}
+	
+	public boolean hasController(){
+		return isPlayerControlled();
+	}
+	
+	public PlayerController getController(){
+		return getControls();
 	}
 }

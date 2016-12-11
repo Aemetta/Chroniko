@@ -21,7 +21,7 @@ public class Ticker extends Thread{
 			game.window.repaint();
 			game.notes.refresh();
 			
-			Thread.yield();
+		//	Thread.yield();
 			
 		/*	long diff = System.nanoTime() - time;
 			

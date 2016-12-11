@@ -1,10 +1,17 @@
 package com.dnihilu.chroniko;
 
 import java.awt.Color;
+import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.RenderingHints;
 import java.util.Vector;
 
-public class BoardPS2D extends BoardPS implements Visible {
+public class BoardPS2D extends BoardPS implements Visible{
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 5134028539300612294L;
 	
 	private double length;
 	private double runoff;
@@ -17,12 +24,21 @@ public class BoardPS2D extends BoardPS implements Visible {
 	private Vector<BeatMarker> beats = new Vector<BeatMarker>(20, 5);
 	private Vector<Visible> effects = new Vector<Visible>(20, 5);
 	
-	public BoardPS2D(Chroniko game, BoardTypePS type, double speed, boolean playerControlled){
+	public BoardPS2D(Chroniko game, TypePS type, double speed, boolean playerControlled){
 		super(game, type, playerControlled);
 		this.notecolor = type.noteColors();
 		
 		this.length = 1/speed;
 		this.runoff = length/5;
+	}
+	
+	public void paint(Graphics g){
+		Graphics2D g2d = (Graphics2D) g;
+		
+		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
+				RenderingHints.VALUE_ANTIALIAS_ON);
+		
+		paint(g2d, 0, 0, getWidth(), getHeight());
 	}
 	
 	public void paint(Graphics2D g2d, int x, int y, int w, int h){
@@ -56,7 +72,7 @@ public class BoardPS2D extends BoardPS implements Visible {
 	
 	public void addNote(double startTime, double endTime, int lane, int noteType){
 		double len;
-		if(type == BoardTypePS.DRUMS || noteType == 0) len = 0;
+		if(type == TypePS.DRUMS || noteType == 0) len = 0;
 		else len = endTime-startTime;
 		
 		if(lane >= 0 && lane < numLanes + 1){
@@ -99,14 +115,6 @@ public class BoardPS2D extends BoardPS implements Visible {
 	
 	public double getRunoff(){
 		return runoff;
-	}
-	
-	public boolean hasController(){
-		return isPlayerControlled();
-	}
-	
-	public PlayerController getController(){
-		return getControls();
 	}
 	
 	public double getHitWindow(){

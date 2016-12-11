@@ -2,15 +2,18 @@ package com.dnihilu.chroniko;
 
 public abstract class BoardPS extends BoardScrolling {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1415150153604536533L;
 	
-	
-	protected BoardTypePS type;
+	protected TypePS type;
 	protected int numLanes;
 
 	protected boolean fret[];
 	protected double hitWindow = 0.1;
 
-	public BoardPS(Chroniko game, BoardTypePS type, boolean playerControlled) {
+	public BoardPS(Chroniko game, TypePS type, boolean playerControlled) {
 		super(game);
 		this.type = type;
 		this.numLanes = type.lanes();
@@ -22,7 +25,7 @@ public abstract class BoardPS extends BoardScrolling {
 			this.setControls(new PlayerControllerPS(this));
 	}
 	
-	public BoardTypePS getType(){
+	public TypePS getType(){
 		return type;
 	}
 	

@@ -244,8 +244,8 @@ public class NoteSequencer {
 		else return 2;
 	}
 	
-	private int getOffset(BoardTypePS type){
-		if(type == BoardTypePS.DRUMS) return 96;
+	private int getOffset(TypePS type){
+		if(type == TypePS.DRUMS) return 96;
 		else return 95;
 	}
 	
